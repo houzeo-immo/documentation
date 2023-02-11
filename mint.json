@@ -1,9 +1,9 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Houzeo",
   "logo": {
-    "dark": "/logo/dark.png",
-    "light": "/logo/light.png"
+    "dark": "/logo/houzeo_light.png",
+    "light": "/logo/houzeo_dark.png"
   },
   "favicon": "/favicon.png",
   "colors": {
@@ -13,57 +13,43 @@
   },
   "topbarLinks": [
     {
-      "name": "Documentation",
-      "url": "https://mintlify.com/docs"
+      "name": "Retour au site",
+      "url": "https://houzeo.fr"
     }
   ],
   "topbarCtaButton": {
-    "name": "Get Started",
-    "url": "https://github.com/mintlify/starter"
+    "name": "Utiliser l'API",
+    "url": "https://app.houzeo.fr"
   },
   "anchors": [
     {
-      "name": "API Reference",
+      "name": "API",
       "icon": "rectangle-terminal",
       "url": "api-reference"
     },
     {
-      "name": "Changelog",
+      "name": "Espace membre",
       "icon": "list",
-      "url": "https://mintlify.com"
-    },
-    {
-      "name": "Community",
-      "icon": "discord",
-      "url": "https://mintlify.com/community"
+      "url": "https://app.houzeo.fr"
     }
   ],
   "navigation": [
     {
-      "group": "Home",
-      "pages": ["introduction", "development"]
+      "group": "Accueil",
+      "pages": ["introduction"]
     },
     {
-      "group": "Learn More",
-      "pages": ["features", "resources"]
-    },
-    {
-      "group": "API Documentation",
+      "group": "Introduction",
       "pages": ["api-reference/authentication"]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Annonces",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/update",
-        "api-reference/endpoint/delete"
+        "api-reference/endpoint/list"
       ]
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "github": "https://github.com/houzeo-immo"
   }
 }

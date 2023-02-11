@@ -1,0 +1,310 @@
+---
+title: "Lister les annonces"
+api: "GET https://api.houzeo.fr/real-estate/search"
+description: "Cette route permet de lister les annonces"
+---
+
+### Body
+
+<ParamField body="page" type="integer" default="1" required={false} optional={true} placeholder={1}>
+  Numéro de la page à afficher
+</ParamField>
+
+<ParamField body="limit" type="integer" default="50" required={false} optional={true}>
+  Nombre d'annonces par page
+</ParamField>
+
+<ParamField body="sortBy" type="string" required={false} optional={true} default={"created_at"}>
+  Le champ sur lequel trier les résultats. Les valeurs possibles sont : price, price_per_sqm, surface, rooms, created_at, updated_at
+</ParamField>
+
+<ParamField body="order" type="string" required={false} optional={true} default={"desc"}>
+  L'ordre de tri. Les valeurs possibles sont : asc, desc
+</ParamField>
+
+<ParamField body="types" type="array" required={false} optional={true}>
+  Le type d'annonces à retourner : sale, rent
+</ParamField>
+
+<ParamField body="origins" type="array" required={false}>
+  Les plateformes sur lesquelles les annonces sont publiées : A FAIRE
+</ParamField>
+
+<ParamField body="categories" type="array" required={false}>
+  Les plateformes sur lesquelles les annonces sont publiées : apartment, house, office, land, commercial, parking, other
+</ParamField>
+
+<ParamField body="owner_types" type="array" required={false}>
+  Les plateformes sur lesquelles les annonces sont publiées : individual, professional
+</ParamField>
+
+<ParamField body="keywords" type="array" required={false}>
+  Liste des mots clés à rechercher dans les annonces
+</ParamField>
+
+<ParamField body="keywords_operator" type="string" required={false}>
+  Les opérateurs de recherche de mots clés, si plusieurs mots clés sont fournis : and, or
+</ParamField>
+
+<ParamField body="price_min" type="number" required={false}>
+  Prix minimum
+</ParamField>
+
+<ParamField body="price_max" type="number" required={false}>
+  Prix maximum
+</ParamField>
+
+<ParamField body="price_by_sqm_min" type="number" required={false}>
+  Prix minimum au m²
+</ParamField>
+
+<ParamField body="price_by_sqm_max" type="number" required={false}>
+  Prix maximum au m²
+</ParamField>
+
+<ParamField body="surface_min" type="number" required={false}>
+  Surface minimum
+</ParamField>
+
+<ParamField body="surface_max" type="number" required={false}>
+  Surface maximum
+</ParamField>
+
+<ParamField body="rooms_min" type="number" required={false}>
+  Nombre de pièces minimum
+</ParamField>
+
+<ParamField body="rooms_max" type="number" required={false}>
+  Nombre de pièces maximum
+</ParamField>
+
+<ParamField body="bedrooms_min" type="number" required={false}>
+  Nombre de chambres minimum
+</ParamField>
+
+<ParamField body="bedrooms_max" type="number" required={false}>
+  Nombre de chambres maximum
+</ParamField>
+
+<ParamField body="floor_min" type="number" required={false}>
+  Nombre d'étages minimum
+</ParamField>
+
+<ParamField body="floor_max" type="number" required={false}>
+  Nombre d'étages maximum
+</ParamField>
+
+<ParamField body="building_floor_min" type="number" required={false}>
+  Nombre d'étages de l'immeuble minimum
+</ParamField>
+
+<ParamField body="building_floor_max" type="number" required={false}>
+  Nombre d'étages de l'immeuble maximum
+</ParamField>
+
+<ParamField body="construction_year_min" type="number" required={false}>
+  Année de construction minimum
+</ParamField>
+
+<ParamField body="construction_year_max" type="number" required={false}>
+  Année de construction maximum
+</ParamField>
+
+<ParamField body="dpe_value_min" type="number" required={false}>
+  Valeur du diagnostic de performance énergétique minimum
+</ParamField>
+
+<ParamField body="dpe_value_max" type="number" required={false}>
+  Valeur du diagnostic de performance énergétique maximum
+</ParamField>
+
+<ParamField body="ges_value_min" type="number" required={false}>
+  Valeur du diagnotic de gaz à effet de serre minimum
+</ParamField>
+
+<ParamField body="ges_value_max" type="number" required={false}>
+  Valeur du diagnotic de gaz à effet de serre maximum
+</ParamField>
+
+<ParamField body="keywords" type="array" required={false}>
+  Options et caractéristiques du bien : fibre_optique, meuble, non_meuble, ascenceur, sans_ascenceur, jardin, terrasse, garage, parking, cave, piscine, interphone, terrasse, digicode, rdc
+</ParamField>
+
+### Response
+
+<ResponseField name="totalDocs" type="number">
+  Nombre total d'annonces correspondant à la requête
+</ResponseField>
+
+<ResponseField name="limit" type="number">
+  Limite de résultats par page
+</ResponseField>
+
+<ResponseField name="totalPages" type="number">
+  Nombre total de pages
+</ResponseField>
+
+<ResponseField name="page" type="number">
+  Page courante
+</ResponseField>
+
+<Expandable title="Liste des annonces">
+
+<ResponseField name="team_id" type="number">
+  This is the internal ID for this user group. You don't need to record this information, since
+  you will not need to use it.
+</ResponseField>
+
+<ResponseField name="token" type="string">
+  This is the user group token (userGroupToken or USER_GROUP_TOKEN) that will be used to identify
+  which user group is viewing the dashboard. You should save this on your end to use when rendering
+  an embedded dashboard.
+</ResponseField>
+
+<ResponseField name="name" type="string">
+  This is the name of the user group provided in the request body.
+</ResponseField>
+
+<ResponseField name="provided_id" type="string">
+  This is the user_group_id provided in the request body.
+</ResponseField>
+
+<ResponseField name="properties" type="JSON or null">
+  This is the properties object if it was provided in the request body
+</ResponseField>
+
+</Expandable>
+
+<RequestExample>
+
+```bash Exemple de requête
+  curl --location --request POST 'https://api.houzeo.fr/real-estate/search' \
+  --header 'Authorization: Bearer houzeo_api.36a7a7e4c9884d59b6397d607f5b070e' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+  "location": {
+  "lat": 45.564601,
+  "lng": 5.917781,
+  "radius": 1000
+}
+}''
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+  {
+    "docs": [
+        {
+          "_id": "63e432b923f406acb02c75ae",
+          "reference": "VM290-AGENCEPRINCIPALE",
+          "title": "MAISON BISSY AVEC VUE SUR LES MONTAGNES",
+          "category": "house",
+          "owner_type": "professional",
+          "description": "EN EXCLUSIVITE, à Chambéry: Maison 6 pièces de 232m² utile avec piscine et vue sur les montagnes.\nBelle exposition, proche de toutes les commodités. Cette maison se compose de quatre chambres, un salon / salle à manger avec accès terrasse et jardin, une cuisine indépendante, aménagée et équipée et deux salles d'eau.\nAu rdc grand garage et buanderie\nEn annexe; Un terrain de pétanque, une cave.\nIsolation et façade refaite en 2020\nHonoraires à la charge du vendeur.  Classe énergie E, Classe climat B. Montant moyen estimé des dépenses annuelles d'énergie pour un usage standard, établi à partir des prix de l'énergie de l'année 2021 : entre 2150.00 et 2950.00 €. Ce bien vous est proposé par un agent commercial. Nos honoraires : <span class=\"importDescriptionDecorator\" data-url=\"https://files.netty.immo/file/agenceprincipale/154/cn3XW/bareme_agence_ap_portrait_2.pdf\" data-type=\"agencyFeeUrl\">https://files.netty.immo/file/agenceprincipale/154/cn3XW/bareme_agence_ap_portrait_2.pdf</span>",
+          "owner": {
+          "user_id": "558bbfd06fbf04e50075bbce",
+          "type": "professional",
+          "_id": "63e44df323f406acb04f6978"
+        },
+          "location": {
+          "coordinates": {
+          "type": "Point",
+          "coordinates": [
+          5.920363589,
+          45.566267187
+          ],
+          "_id": "63e44df323f406acb04f697a"
+        },
+          "city": "Chambéry",
+          "postalCode": "73000",
+          "_id": "63e44df323f406acb04f6979"
+        },
+          "rooms": 6,
+          "bedrooms": 4,
+          "surface": 117,
+          "land_surface": 360,
+          "construction_year": null,
+          "floor": null,
+          "building_floors": 2,
+          "price": 547000,
+          "price_per_sqm": 4675.213675213675,
+          "options": [
+          "non_meuble",
+          "sans_ascenceur",
+          "jardin",
+          "balcon",
+          "piscine"
+          ],
+          "dpe": {
+          "value": 304,
+          "grade": "E",
+          "is_vierge": true,
+          "_id": "63e44df323f406acb04f697b"
+        },
+          "ges": {
+          "value": 10,
+          "grade": "B",
+          "is_vierge": true,
+          "_id": "63e44df323f406acb04f697c"
+        },
+          "default_origin": {
+          "source": "BienIci",
+          "url": "https://www.bienici.com/annonce/ag732432-375321811",
+          "_id": "63e44df323f406acb04f697d"
+        },
+          "origin": [
+        {
+          "source": "BienIci",
+          "url": "https://www.bienici.com/annonce/ag732432-375321811",
+          "reference": "ag732432-375321811",
+          "_id": "63e44df323f406acb04f697e"
+        }
+          ],
+          "medias": {
+          "pictures": [
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_1.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_2.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_3.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_4.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_5.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_6.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_7.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_8.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_9.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_10.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_11.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_12.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_13.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_14.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_15.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_16.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_17.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_18.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_19.jpg_INSOON_EB_5512801818_20230208135623",
+          "https://file.bienici.com/photo/ag732432-375321811_photos.ubiflow.net_732432_375321811_photos_20.jpg_INSOON_EB_5512801818_20230208135623"
+          ],
+          "_id": "63e44df323f406acb04f697f"
+        },
+        "is_active": false,
+        "created_at": "2023-02-08T22:47:21.627Z",
+        "updated_at": "2023-02-08T22:47:21.627Z",
+        "ad_type": "sale",
+        "__v": 0
+      }
+    ],
+    "totalDocs": 197545,
+    "limit": 50,
+    "totalPages": 3950,
+    "page": 1,
+    "pagingCounter": 1,
+    "hasPrevPage": false,
+    "hasNextPage": true,
+    "prevPage": null,
+    "nextPage": 2
+  }
+```
+
+</ResponseExample>
