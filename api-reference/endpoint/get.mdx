@@ -1,10 +1,14 @@
 ---
-title: "Get User"
+title: "Lister les annonces"
 api: "GET https://api.mintlify.com/api/user"
 description: "This endpoint gets or creates a new user."
 ---
 
 ### Body
+
+<ParamField header="Authorization" type="string">
+  Bearer CLE_API
+</ParamField>
 
 <ParamField body="name" type="string">
   This is the name of the user group.
